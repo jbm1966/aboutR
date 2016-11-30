@@ -9,7 +9,7 @@ output: html_document
 
 ```{r}
 
-ciudades<-read.csv("D:\\t143737\\Desktop\\R\\ciudades.csv",stringsAsFactors=FALSE,encoding="UTF-8")
+ciudades<-read.csv("D:\\usuarioplus\\Desktop\\R\\ciudades.csv",stringsAsFactors=FALSE,encoding="UTF-8")
 library(leaflet)
 library(magrittr)
 library(ggmap)
