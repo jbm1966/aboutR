@@ -1,0 +1,32 @@
+---
+title: "Probatinas con mapas"
+author: "R data analysis language"
+date: 
+output: html_document
+---
+
+#Jugando con la biblioteca javascript leaflet desde R
+
+```{r}
+
+ciudades<-read.csv("D:\\t143737\\Desktop\\R\\ciudades.csv",stringsAsFactors=FALSE,encoding="UTF-8")
+library(leaflet)
+library(magrittr)
+library(ggmap)
+
+latlong<-geocode(ciudades$ciudad)
+latlong
+ciudades$lat<-NULL
+ciudades$lon<-NULL
+ciudades$long<-NULL
+
+ciudades<-cbind(ciudades,latlong)
+
+ciudades
+names(ciudades)<-c("pais","ciudad","habs","lon","lat")
+
+leaflet(ciudades) %>% addProviderTiles("Stamen.Toner") %>% addCircles(lng = ~lon, lat = ~lat,
+color=ifelse(ciudades$pais=="Francia","red","blue"),
+weight = 2, radius = ~sqrt(habs) * 30, popup = ~ciudad)
+
+```
